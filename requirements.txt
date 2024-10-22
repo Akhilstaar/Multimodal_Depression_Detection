@@ -4,3 +4,4 @@ itertools
 python_speech_features
 librosa
 tensorflow
+pandas
