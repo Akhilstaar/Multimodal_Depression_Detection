@@ -12,6 +12,10 @@ And these codes also required code changes to work on latest version of tf, kera
 
 Ensure that required packages as mentioned in `requirements.txt` are installed on your device.
 
+Due to size upload limit on github, 3 files `import_files/vggish/vggish_model.ckpt`,`import_files/zhs.model/encoder.pkl` and `import_files/zhs.model/token_embedder.pkl` are uploaded to google drive instead. So, before running the code, the files need to be put to their desired location.
+
+Files Link : [drive.google.com/...](https://drive.google.com/drive/folders/1Y67ZzvZnPPX_5Z5DdXhXH-ELHq6e_aK2?usp=sharing)
+
 For **classification models**:
 
 Since, the pretrained models are already stored in ./Model folder, `./Classification/AudioModelChecking.ipynb`, `./Classification/TextModelChecking.ipynb` can be used for evaluating Audio GRU and Text Bi-LSTM models.
