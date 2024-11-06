@@ -12,17 +12,13 @@ And these codes also required code changes to work on latest version of tf, kera
 
 Ensure that required packages as mentioned in `requirements.txt` are installed on your device.
 
-Due to size upload limit on github, 3 files `import_files/vggish/vggish_model.ckpt`,`import_files/zhs.model/encoder.pkl` and `import_files/zhs.model/token_embedder.pkl` are uploaded to google drive instead. So, before running the code, the files need to be put to their desired location.
-
-Files Link : [drive.google.com/...](https://drive.google.com/drive/folders/1Y67ZzvZnPPX_5Z5DdXhXH-ELHq6e_aK2?usp=sharing)
-
 For **classification models**:
 
 Since, the pretrained models are already stored in ./Model folder, `./Classification/AudioModelChecking.ipynb`, `./Classification/TextModelChecking.ipynb` can be used for evaluating Audio GRU and Text Bi-LSTM models.
 
 Similarly, `./Classification/fuse_model_checking.ipynb` can be used for evaluating the fuse model.
 
-**Results** : 
+**Model Evaluation Results** : 
 
 __Text Bi-LSTM Model__:
 
@@ -33,6 +29,9 @@ f1 score: 0.6606730460153797
 ```
 __Audio GRU Model__:
 
+```
+
+```
 
 __Fuse Net Model__:
 ```
@@ -40,6 +39,47 @@ precison: 0.6551062091503268
 recall: 0.7508417508417509 
 f1 score: 0.6788445472655998
 ```
+
+**Modified Model Results** :
+
+After changing the text embeddings from ELMo to BERT, the text Bi-LSTM model converges much faster and gives more consistent results in the regression test along with some improvements in the MAE as mentioned below :-
+
+Text 1 : 
+ELMO Embeddings - MAE : 8.42
+BERT Tokenizer - MAE : 7.94
+Roberta - MAE : 7.71
+
+Text 2 : 
+ELMO Embeddings - MAE : 8.23
+BERT Tokenizer - MAE : 7.60
+Roberta - MAE : 7.58
+
+Text 3 : 
+ELMO Embeddings - MAE : 7.64
+BERT Tokenizer - MAE : 7.39
+Roberta - MAE : 7.37
+
+
+__Results for Fusenet__
+
+Fuse 1 :
+ELMO Embeddings(in text BiLSTM) - MAE : 7.82
+BERT Tokenizer(in text BiLSTM) - MAE : 7.34
+Roberta(in text BiLSTM) - MAE : 7.22
+
+Fuse 2 :
+ELMO Embeddings(in text BiLSTM) - MAE : 8.24
+BERT Tokenizer(in text BiLSTM) - MAE : 8.22
+Roberta(in text BiLSTM) - MAE : 7.97
+
+Fuse 3 :
+ELMO Embeddings(in text BiLSTM) - MAE : 7.52
+BERT Tokenizer(in text BiLSTM) - MAE : 7.93
+Roberta(in text BiLSTM) - MAE : 7.98
+
+
+i.e. Initially with ELMo embeddings, the model results were not consistent and required multiple runs to get the best results on the particularly selected random indexes. But with Transformer embeddings for the text, the results are much more consistent and do not require multiple runs.
+
 ### Steps For Model Training
 
 Ensure that required packages as mentioned in `requirements.txt` are installed on your device.
